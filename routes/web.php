@@ -1,6 +1,6 @@
 <?php
 
-/** @var \Laravel\Lumen\Routing\Router $router */
+/** @var Router $router */
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +13,16 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+use Laravel\Lumen\Routing\Router;
+
+$router->group([
+    'prefix' => 'api'
+], function ($router) {
+    $router->post('login', 'Api\AuthController@login');
+    $router->post('register', 'Api\AuthController@register');
+    $router->post('logout', 'Api\AuthController@logout');
+    $router->post('refresh', 'Api\AuthController@refresh');
+    $router->post('user-profile', 'Api\AuthController@me');
+
 });
 
-$router->post('project', 'ProjectController@create');
-$router->get('project/{id}', 'ProjectController@getProject');
-$router->post('models', 'ModelController@models');
