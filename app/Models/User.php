@@ -7,8 +7,13 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Lumen\Auth\Authorizable;
 
+/**
+ * @method static where(string $string, mixed $input)
+ */
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
     use Authenticatable, Authorizable, HasFactory;
@@ -16,11 +21,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var $fillable array
      */
-    protected $fillable = [
-        'name', 'email',
-    ];
+    protected $fillable = ['name','email','password'];
+
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -30,4 +34,13 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'password',
     ];
+
+
+    /**
+     * @return HasOne
+     */
+    public function client(): HasOne
+    {
+        return $this->hasOne('App\Models\Client','user_id');
+    }
 }
