@@ -17,4 +17,6 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->post('test', 'TestController@test');
+$router->post('project', 'ProjectController@create');
+$router->get('project/{id}', 'ProjectController@getProject');
+$router->post('models', 'ModelController@models');
