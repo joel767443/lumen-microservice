@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Auth\Authenticatable;
+use Illuminate\Http\Request;
+use Laravel\Lumen\Application;
 use Laravel\Lumen\Auth\Authorizable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
@@ -13,7 +15,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property string $name
  * @property string $email
  * @property string $password
- * @method static create(array|\Illuminate\Http\Request|\Laravel\Lumen\Application|string $credentials)
+ * @method static create(array|Request|Application|string $credentials)
  */
 class User extends Model implements AuthenticatableContract, AuthorizableContract, JWTSubject
 {
@@ -45,7 +47,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      *
      * @return array
      */
-    public function getJWTCustomClaims()
+    public function getJWTCustomClaims(): array
     {
         return [];
     }
