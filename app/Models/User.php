@@ -13,6 +13,9 @@ use Laravel\Lumen\Auth\Authorizable;
 
 /**
  * @method static where(string $string, mixed $input)
+ * @method static create()
+ * @method static insertGetId(array $array)
+ * @property string $api_token
  */
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
@@ -23,7 +26,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      *
      * @var $fillable array
      */
-    protected $fillable = ['name','email','password'];
+    protected $fillable = ['name','email','password', 'api_token'];
 
 
     /**

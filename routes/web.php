@@ -6,7 +6,8 @@ use Laravel\Lumen\Routing\Router;
 
 $router->group(['prefix' => 'api/'], function() use ($router) {
 
-    $router->get('login/','UsersController@authenticate');
+    $router->post('login/','UsersController@authenticate');
+    $router->post('register/','UsersController@register');
 
     $router->group(['middleware' => 'auth:api'], function() use ($router) {
 
