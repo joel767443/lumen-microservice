@@ -2,10 +2,12 @@
 
 namespace App\Services;
 
+use App\Http\Controllers\UserController;
 use App\Models\User;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class UserService
 {
@@ -18,7 +20,7 @@ class UserService
     public static function create(Request $request, string $token): int
     {
         return User::insertGetId([
-            'name' => $request->input('name'),
+            'name' => $request->input('full_name'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
             'api_token' => $token
@@ -37,5 +39,19 @@ class UserService
             UserRepository::findOneBy('email', $request->input('email'))->update(['api_token' => "$apikey"]);
         }
         return $instance->api_token;
+    }
+
+    /**
+     * @param Request $request
+     * @param UserController $instance
+     * @return void
+     * @throws ValidationException
+     */
+    public static function validateUserRequest(Request $request, UserController $instance): void
+    {
+        $instance->validate($request, [
+            'email' => 'required',
+            'password' => 'required'
+        ]);
     }
 }

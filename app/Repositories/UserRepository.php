@@ -8,12 +8,12 @@ class UserRepository
 {
 
     /**
-     * @param string $email
+     * @param string $field
      * @param $value
      * @return User
      */
-    public static function findOneBy(string $email, $value): User
+    public static function findOneBy(string $field, $value): ?User
     {
-        return User::where($email, $value)->first();
+        return User::where($field, $value)->first();
     }
 }

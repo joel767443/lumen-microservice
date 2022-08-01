@@ -17,7 +17,7 @@ class AddClientTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description');
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->unique();
             $table->timestamps();
         });
     }
