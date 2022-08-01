@@ -19,7 +19,7 @@ class UserService
      */
     public static function create(Request $request, string $token): int
     {
-        return User::insertGetId([
+        return User::create([
             'name' => $request->input('full_name'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),

@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Services\ProjectService;
+use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
+
 class ProjectController extends Controller
 {
     /**
@@ -27,17 +32,28 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @return Response
+     * @throws ValidationException
      */
-    public function store()
+    public function store(Request $request)
     {
-        //
+        ProjectService::validateProjectRequest($request, $this);
+
+        if (!User::canCreateProject()) {
+
+            return response()->json([
+                'status' => 'error',
+                'message' => 'you can only create 1 project at this stage.'
+            ]);
+        }
+
+        ProjectService::create($request);
+        return response()->json(['status' => 'success', 'message' => 'project created']);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function show($id)
@@ -48,7 +64,7 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function edit($id)
@@ -59,7 +75,7 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function update($id)
@@ -70,11 +86,12 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function destroy($id)
     {
         //
     }
+
 }

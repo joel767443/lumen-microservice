@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Http\Controllers\UserController;
 use App\Models\Client;
+use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
@@ -38,6 +40,27 @@ class ClientService
             'email' => 'required',
             'password' => 'required',
             'description' => 'required'
+        ]);
+    }
+
+    /**
+     * @param string $token
+     * @param User $user
+     * @return JsonResponse
+     */
+    public static function getClientJsonResponse(string $token, User $user): JsonResponse
+    {
+        return response()->json([
+            'status' => 'success',
+            'data' => [
+                'api_token' => $token,
+                'client' => [
+                    'full_name' => $user->name,
+                    'customer_name' => $user->client->name,
+                    'email' => $user->email,
+                    'description' => $user->client->description,
+                ]
+            ]
         ]);
     }
 }

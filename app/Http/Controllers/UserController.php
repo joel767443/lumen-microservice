@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Repositories\UserRepository;
 use App\Services\ClientService;
 use App\Services\UserService;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -37,7 +38,7 @@ class UserController extends Controller
 
         if (Hash::check($request->input('password'), $user->password)) {
             $apikey = UserService::addTokenIfNotExist($request, $user);
-            return response()->json(['status' => 'success', 'api_token' => $apikey], 200);
+            return response()->json(['status' => 'success', 'api_token' => $apikey]);
         } else {
             return response()->json(['status' => 'fail', 'message' => 'Email or Password does not match our records.'], 401);
         }
@@ -53,18 +54,21 @@ class UserController extends Controller
         ClientService::validateClientRequest($request, $this);
 
         if ($user = User::exists($request->input('email'))) {
-            return response()->json(['status' => 'success', 'api_token' => $user->api_token], 200);
+            return ClientService::getClientJsonResponse($user->api_token, $user);
         }
 
         DB::beginTransaction();
 
         try {
             $token = base64_encode(Str::random(40));
-            $userId = UserService::create($request, $token);
-            ClientService::create($request, $userId);
+            /** @var User $user */
+            $user = UserService::create($request, $token);
+            ClientService::create($request, $user->id);
             DB::commit();
-            return response()->json(['status' => 'success', 'api_token' => $token], 200);
-        } catch (\Exception $e) {
+
+            return ClientService::getClientJsonResponse($token, $user);
+
+        } catch (Exception $e) {
             DB::rollback();
             return response()->json(['status' => 'fail', 'message' => $e->getMessage()], 300);
         }
