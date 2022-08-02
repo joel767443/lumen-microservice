@@ -31,7 +31,7 @@ services:
       - "443:443"
     volumes:
       - ./:/var/www/html/
-      - ./nginx/conf.d/:/etc/nginx/conf.d/
+      - ./.docker/nginx/conf.d/:/etc/nginx/conf.d/
     networks:
       - app-network
 
@@ -39,7 +39,7 @@ services:
   db:
     volumes:
       - dbdata:/var/lib/mysql/
-      - ./mysql/my.conf:/etc/mysql/my.cnf
+      - ./.docker/mysql/my.conf:/etc/mysql/my.cnf
     image: mysql:5.7.32
     container_name: db
     restart: unless-stopped
