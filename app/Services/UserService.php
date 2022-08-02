@@ -15,9 +15,9 @@ class UserService
     /**
      * @param Request $request
      * @param string $token
-     * @return integer
+     * @return User
      */
-    public static function create(Request $request, string $token): int
+    public static function create(Request $request, string $token): User
     {
         return User::create([
             'name' => $request->input('full_name'),
