@@ -44,4 +44,6 @@ RUN chown -R www-data:www-data \
 EXPOSE 9000
 CMD ["php-fpm"]
 RUN chown -R www-data:www-data /var/www
+RUN ./vendor/bin/phpunit
+
 
