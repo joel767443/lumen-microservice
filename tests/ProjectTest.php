@@ -1,10 +1,11 @@
 <?php
 
+use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 
 class ProjectTest extends TestCase
 {
-//    use DatabaseTransactions;
+    use DatabaseTransactions, DatabaseMigrations;
 
     /**
      * testing if the user is allowed to create a project
