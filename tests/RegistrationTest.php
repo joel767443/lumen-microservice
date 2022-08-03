@@ -16,6 +16,7 @@ class RegistrationTest extends TestCase
             "full_name" => "",
             "email" => "test@gmail.com",
             "password" => "1234654",
+            "password_confirmation" => "1234654",
             "client_name" => "Our Solutions",
             "description" => "sample explanation"
         ]);
@@ -34,6 +35,7 @@ class RegistrationTest extends TestCase
             "full_name" => "test name",
             "email" => "test@gmail.com",
             "password" => "1234654",
+            "password_confirmation" => "1234654",
             "client_name" => "Our Solutions",
             "description" => "sample explanation"
         ]);

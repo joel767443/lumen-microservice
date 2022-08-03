@@ -38,7 +38,7 @@ class ClientService
             'full_name' => 'required',
             'client_name' => 'required',
             'email' => 'required',
-            'password' => 'required',
+            'password' => 'required|min:6|confirmed',
             'description' => 'required'
         ]);
     }
