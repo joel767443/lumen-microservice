@@ -4,7 +4,7 @@ use Laravel\Lumen\Testing\DatabaseTransactions;
 
 class ProjectTest extends TestCase
 {
-    use DatabaseTransactions;
+//    use DatabaseTransactions;
 
     /**
      * testing if the user is allowed to create a project
@@ -43,7 +43,7 @@ class ProjectTest extends TestCase
             "client_name" => "Our Solutions",
             "description" => "sample explanation"
         ]);
-dd($this->response->content());
+
         $this->call(
             "POST", '/api/project', [
             'name' => 'test projects'], [], [],
