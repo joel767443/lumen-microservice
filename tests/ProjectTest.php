@@ -4,7 +4,7 @@ use Laravel\Lumen\Testing\DatabaseTransactions;
 
 class ProjectTest extends TestCase
 {
-    use DatabaseTransactions;
+//    use DatabaseTransactions;
 
     /**
      * testing if the user is allowed to create a project
