@@ -11,9 +11,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
 
-      - name: Setup Github token for private repos
-        run: composer config -g github-oauth.github.com ${{ secrets.GITHUB_ACCESS_TOKEN }}
-
       - name: Cache composer dependencies
         uses: actions/cache@v1
         with:
