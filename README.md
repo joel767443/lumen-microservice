@@ -14,5 +14,7 @@ run php -S localhost:8004 -t public in local folder and use Postman or something
 
 ## Unit test
 If you want to run unit tests outside the docker container, you can user
-docker exec -it app ./vendor/bin/phpunit else log into the container and run  ./vendor/bin/phpunit
+docker exec -it app ./vendor/bin/phpunit else log into the container and run  ./vendor/bin/phpunit.
+
+All tests are using the DatabaseTransactions trait so that changes get rolled back after the test as this is using the main database.
 

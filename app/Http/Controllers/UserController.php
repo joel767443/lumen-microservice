@@ -33,7 +33,7 @@ class UserController extends Controller
         $user = UserRepository::findOneBy('email', $request->input('email'));
 
         if (!$user) {
-            return response()->json(['status' => 'fail', 'message' => 'User not found, please register.'], 400);
+            return response()->json(['status' => 'fail', 'message' => 'User not found, please register.'], 401);
         }
 
         if (Hash::check($request->input('password'), $user->password)) {
@@ -56,7 +56,7 @@ class UserController extends Controller
         if ($user = User::exists($request->input('email'))) {
             return ClientService::getClientJsonResponse($user->api_token, $user);
         }
-dd(1);
+
         DB::beginTransaction();
 
         try {
