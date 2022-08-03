@@ -43,7 +43,7 @@ class ProjectTest extends TestCase
             "client_name" => "Our Solutions",
             "description" => "sample explanation"
         ]);
-
+dd($this->response->content());
         $this->call(
             "POST", '/api/project', [
             'name' => 'test projects'], [], [],
