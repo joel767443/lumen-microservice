@@ -8,12 +8,12 @@ on:
 jobs:
   laravel-tests:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu:20.00
 
     steps:
-    - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
-      with:
-        php-version: '7.4'
     - uses: actions/checkout@v3
+    - uses: actions/cache@v3.0.5
+      with:
+        key: jjbbgg
     - run: docker-compose up -d
     - run: docker exec -i app ./vendor/bin/phpunit
