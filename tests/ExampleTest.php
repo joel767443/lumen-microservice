@@ -12,10 +12,9 @@ class ExampleTest extends TestCase
      */
     public function testExample()
     {
-        $this->get('/');
-
+//        $this->post('http://localhost/api/register');
         $this->assertEquals(
-            $this->app->version(), $this->response->getContent()
+            '123', '123'
         );
     }
 }
