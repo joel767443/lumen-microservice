@@ -56,7 +56,7 @@ class UserController extends Controller
         if ($user = User::exists($request->input('email'))) {
             return ClientService::getClientJsonResponse($user->api_token, $user);
         }
-
+dd(1);
         DB::beginTransaction();
 
         try {
