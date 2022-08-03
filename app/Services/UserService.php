@@ -50,8 +50,8 @@ class UserService
     public static function validateUserRequest(Request $request, UserController $instance): void
     {
         $instance->validate($request, [
-            'email' => 'required',
-            'password' => 'required'
+            'email' => 'required|email:rfc,dns',
+            'password' => 'required',
         ]);
     }
 }

@@ -61,6 +61,7 @@ class AuthenticationTest extends TestCase
             "full_name" => "Yoweli Kachala",
             "email" => "test@gmail.com",
             "password" => "1234654",
+            "password_confirmation" => "1234654",
             "client_name" => "Our Solutions",
             "description" => "sample explanation"
         ]);

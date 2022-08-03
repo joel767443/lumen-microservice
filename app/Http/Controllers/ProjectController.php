@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Services\ProjectService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
@@ -32,9 +33,11 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * @param Request $request
+     * @return JsonResponse
      * @throws ValidationException
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
         ProjectService::validateProjectRequest($request, $this);
 
