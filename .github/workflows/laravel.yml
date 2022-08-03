@@ -12,8 +12,5 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - uses: actions/cache@v3.0.5
-      with:
-        key: jjbbgg
     - run: docker-compose up -d
     - run: ./vendor/bin/phpunit
