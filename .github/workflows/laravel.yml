@@ -8,7 +8,7 @@ on:
 jobs:
   laravel-tests:
 
-    runs-on: ubuntu-20.00
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
