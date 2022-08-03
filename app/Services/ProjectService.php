@@ -33,7 +33,7 @@ class ProjectService
     public static function validateProjectRequest(Request $request, ProjectController $instance)
     {
         $instance->validate($request, [
-            'name' => 'required',
+            'name' => 'required|min:6',
         ]);
     }
 }
