@@ -8,14 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: deploy to server
-        uses: appleboy/ssh-action@v0.1.2
+        uses: appleboy/ssh-action@master
         with:
           host: $(secrets.SSH_HOST)
           key: $(secrets.SSH_KEY)
           username: $(secrets.SSH_USERNAME)
 
           script: |
-            mkdir test
-            cd test
+            cd /var/www/main
             git clone git@github.com:joel767443/lumen-microservice.git
             echo 'Deployment successful'
