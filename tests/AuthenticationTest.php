@@ -17,6 +17,7 @@ class AuthenticationTest extends TestCase
             "email" => "",
             "password" => "123456",
         ]);
+
         $this->assertResponseStatus(422);
         $this->seeJsonContains(["The email field is required."]);
 
