@@ -10,9 +10,9 @@ jobs:
       - name: deploy to server
         uses: appleboy/ssh-action@master
         with:
-          host: $(secrets.SSH_HOST)
-          key: $(secrets.SSH_KEY)
-          username: $(secrets.SSH_USERNAME)
+          host: ${{ secrets.SSH_HOST }}
+          key: ${{ secrets.SSH_KEY }}
+          username: ${{ secrets.SSH_USERNAME }}
 
           script: |
             cd /var/www/main/lumen-microservice
