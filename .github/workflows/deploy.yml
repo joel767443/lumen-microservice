@@ -15,9 +15,9 @@ jobs:
 
           script: |
             cd /var/www/main/lumen-microservice
-            git fetch origin main
+            git remote update
+            git pull origin main
+            docker-compose down
+            docker-compose up -d
             composer install
             echo 'Deployment successful'
-
-
-
