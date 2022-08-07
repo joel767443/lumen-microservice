@@ -32,4 +32,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: merge-to-main
-        echo "trying to merge"
+        run: |
+          echo "trying to merge"
