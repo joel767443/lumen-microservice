@@ -6,9 +6,7 @@ on:
 
 jobs:
   laravel-tests:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
       with:
@@ -29,3 +27,16 @@ jobs:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: vendor/bin/phpunit
+  autu-merging:
+    needs: laravel-tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: merge develop -> main
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          from_branch: develop
+          target_branch: main
+          github_token: ${{ secrets.TOKEN }}
+        run: |
+          echo "trying to merge"
