@@ -27,7 +27,7 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - "80:80"
+      - "8004:8004"
       - "443:443"
     volumes:
       - ./:/var/www/html/
@@ -45,7 +45,7 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - "3306:3306"
+      - "3308:3308"
     environment:
       MYSQL_USER: root
       MYSQL_DATABASE: laravelcrud
