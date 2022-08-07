@@ -31,6 +31,12 @@ jobs:
     needs: laravel-tests
     runs-on: ubuntu-latest
     steps:
-      - name: merge-to-main
+      - name: merge develop -> main
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          from_branch: develop
+          target_branch: main
+          github_token: ${{ secrets.TOKEN }}
         run: |
           echo "trying to merge"
