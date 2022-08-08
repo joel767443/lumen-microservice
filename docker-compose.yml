@@ -52,6 +52,7 @@ services:
       MYSQL_ROOT_PASSWORD: 27Nesleral?
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
+      MYSQL_TCP_PORT: 3308
     networks:
       - app-network
 
